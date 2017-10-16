@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <!--<div :style="style" @click.left="handler"></div>-->
+
+    <!--鼠标右键触发-->
+    <!--<div :style="style" @contextmenu.prevent="handler"></div>-->
+
+    <!--鼠标中键触发-->
+    <div :style="style" @click.middle.prevent="handler"></div>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            style:{border:'2px solid red', height:'1000px'},
+        },
+        methods: {
+            handler(){
+              alert('hdphp');
+            },
+        },
+    });
+
+</script>
+
+</body>
+</html>

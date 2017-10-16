@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <ul>
+        <li v-for="(v,k) in comments">
+            <span v-text="v.id"></span> - <span v-text="v.content"></span> -
+            <button @dblclick="remove(v.id)">删除</button>
+        </li>
+    </ul>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            comments: [
+                {id: 3, content: 'vue学习',},
+                {id: 4, content: 'vue.7senven.cn',},
+                {id: 1, content: 'edit',},
+                {id: 2, content: 'weisen',},
+            ],
+        },
+        methods: {
+            remove(k){
+                console.log(k);
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

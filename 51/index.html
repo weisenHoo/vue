@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+
+</head>
+<body>
+<div id="hdcms">
+
+    <!--<span v-star>后盾人</span>-->
+    <!--<input type="text" v-model="title" v-hd.focus="title">-->
+    <span v-star="color">标题</span>
+    <input type="text" v-model="color" v-focus>
+    <h1 v-hide="true">hdphp</h1>
+
+</div>
+<script>
+    /*Vue.directive('star', {
+     bind(el, bind){
+     console.log(bind);
+     }
+     });
+     Vue.directive('hd', {
+     update(el, bind){
+     console.log(bind);
+     }
+     });
+     Vue.directive('hd', function (el, bind) {
+     console.log(bind);
+     });*/
+    new Vue({
+        el: '#hdcms',
+        data: {
+            title: 'houdunren.com',
+            color:'red',
+        },
+        directives: {
+            star(el, bind){
+                console.log(bind);
+
+                var color = bind.value ? bind.value : 'red';
+                el.style.cssText = 'color:' + color;
+
+                //el.style.cssText = 'color:red';
+            },
+            //bind update
+            focus: {
+                inserted(el, bind){
+                    el.focus();
+                }
+            },
+            hide(el, bind){
+                console.log(bind);
+                if (bind.value) {
+                    el.style.cssText = 'display:none';
+                }
+            },
+            /*star: {
+                bind(el, bind){
+                    console.log(bind);
+
+                    var color = bind.value ? bind.value : 'red';
+                    el.style.cssText = 'color:' + color;
+
+                    //el.style.cssText = 'color:red';
+                },
+                update(el, bind){
+                    console.log(bind);
+
+                    var color = bind.value ? bind.value : 'red';
+                    el.style.cssText = 'color:' + color;
+
+                    //el.style.cssText = 'color:red';
+                },
+            }*/
+        },
+    });
+</script>
+
+</body>
+</html>

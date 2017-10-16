@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单控件处理之表单修饰符.lazy.number.trim实例详解 - vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="hdcms">
+    <form action="" class="form-horizontal">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">文章管理</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">标题</lable>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model.trim.lazy="field.title">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">栏目</lable>
+                    <div class="col-sm-10">
+                        <select v-model="field.cid" class="form-control"><!--multiple size="2"-->
+                            <option value="">==请选择栏目==</option>
+                            <option v-for="v in category" :value="v.cid" v-text="v.title"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">属性</lable>
+                    <div class="col-sm-10">
+                        <div class="checkbox-inline" v-for="v in flag">
+                            <input type="checkbox" v-model="field.flag" :value="v.name"> <span v-text="v.title"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">点击数</lable>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" v-model.number="field.click">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">链接</lable>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" v-model.trim.lazy="field.url">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">摘要</lable>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" name="" v-model="field.description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <lable for="" class="col-sm-2 control-label">类型</lable>
+                    <div class="col-sm-10">
+                        <div class="radio-inline" v-for="v in type">
+                            <input type="radio" v-model="field.type" :value="v.name"> <span v-text="v.title"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary col-sm-offset-2">保存</button>
+    </form>
+
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        watch: {
+            'field.click': function (n, o) {
+                console.log(typeof(n));
+            },
+            'field.title': function (n, o) {
+                console.log(n.length);
+            },
+        },
+        data: {
+            category: [
+                {cid: 1, title: 'HDPHP'},
+                {cid: 2, title: 'HDCMS'},
+                {cid: 3, title: '后盾人闻'},
+                {cid: 4, title: '后盾IT教育新闻'},
+            ],
+            flag: [
+                {name: 'hot', title: '热门'},
+                {name: 'recommend', title: '推荐'},
+            ],
+            type: [
+                {name: 'draft', title: '草稿'},
+                {name: 'send', title: '正式发布'},
+                {name: 'times', title: '延迟发布'},
+            ],
+            field: {
+                title: '后盾人 人人做后盾',
+                cid: '',
+                flag: [],
+                click: 100,
+                url: 'houdunren.com',
+                description: '这是内容摘要',
+                type: 'draft',
+            }
+        },
+        methods: {},
+    });
+
+</script>
+
+</body>
+</html>

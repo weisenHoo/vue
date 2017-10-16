@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="hdcms">
+
+    <button @click="type=!type">切换</button>
+    <transition name="hd">
+        <h1 v-if="type">houdunren.com 后盾人</h1>
+    </transition>
+
+</div>
+<script>
+    new Vue({
+        el: '#hdcms',
+        data: {
+            type: true,
+        },
+    });
+</script>
+<style>
+    .hd-enter,
+    .hd-leave-to{
+        opacity: 0;
+    }
+    /*.hd-enter-to{
+        font-size: 300px;
+    }*/
+    .hd-enter-active{
+        transition: all 2s;
+        color: red;
+    }
+    .hd-leave-active{
+        transition: all 2s;
+        color: green;
+    }
+</style>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/js/vue-router.js"></script>
+
+</head>
+<body>
+
+<div id="hdcms">
+    <router-view class="menu"></router-view>
+    <router-view class="news" name="news"></router-view>
+    <router-view class="slide" name="slide"></router-view>
+</div>
+
+<script type="text/x-template" id="menu">
+    <div>
+        <a href="http://www.houdunren.com">后盾人</a>
+        <a href="http://www.houdunwang.com">后盾IT教育</a>
+    </div>
+</script>
+<script type="text/x-template" id="news">
+    <div>
+        <ul>
+            <li v-for="v in news" v-text="v.title"></li>
+        </ul>
+    </div>
+</script>
+<script type="text/x-template" id="slide">
+    <div>
+        <ul>
+            <li v-for="v in data" v-text="v.title"></li>
+        </ul>
+    </div>
+</script>
+
+<script>
+    const menu = {
+        template: '#menu',
+    }
+    const news = {
+        template: '#news',
+        data(){
+            return {
+                news:[
+                    {title:'houdunren.com'},
+                    {title:'houdunwang.com'},
+                ]
+            }
+        }
+    }
+    const slide = {
+        template: '#slide',
+        data(){
+            return {
+                data:[
+                    {title:'后盾人视频网'},
+                    {title:'后盾IT教育'},
+                    {title:'后盾PHP培训'},
+                ]
+            }
+        }
+    }
+    let routes = [
+        {path: '/', components: {
+            default: menu,
+            news,
+            slide,
+        }},
+    ]
+    //要把主键交给路由器
+    let router = new VueRouter({routes});
+    new Vue({
+        el: '#hdcms',
+        router,
+        data: {},
+    });
+</script>
+
+</body>
+</html>

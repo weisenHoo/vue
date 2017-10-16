@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<style>
+    .green{color: green;}
+    .color{color: red;}
+    .font{font-size: 200px;}
+</style>
+<div id="hdcms">
+    <h1 class="green" :class="hd">后盾网</h1>
+    <hr>
+    <h2 :class="[success,font]">{{title}}</h2>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            title:"houdunwang",
+            hd:{color:false,font:true},
+            success:'color',
+            font:'font'
+        }
+    });
+
+</script>
+
+</body>
+</html>

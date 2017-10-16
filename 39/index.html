@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之子组件中data使用实例与text-xtemplate的使用方法 - vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div id="hdcms">
+
+    <!--<hd-slide></hd-slide>-->
+    <hd-news></hd-news>
+    <hd-news></hd-news>
+
+</div>
+<script type="text/x-template" id="hdNews">
+
+    <ul>
+        <li v-for="v in news">
+            <span v-text="v.title"></span>
+            <button @click="del(k)">删除</button>
+        </li>
+    </ul>
+
+</script>
+<script>
+    var hdNews = {
+        template: '#hdNews',
+        data() {
+            return {
+                news: [
+                    {title: 'hdphp'},
+                    {title: 'hdcms'},
+                ]
+            };   // 返回一个独立的数据
+        },
+        methods: {
+            del(k){
+                this.news.splice(k, 1);
+            },
+        },
+    };
+    new Vue({
+        el: '#hdcms',
+        components: {hdNews},
+        data: {},
+    });
+
+</script>
+
+</body>
+</html>

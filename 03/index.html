@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+</head>
+<body>
+<style>
+    .red{
+        color: red;
+    }
+    .hd{
+        color: green;
+    }
+</style>
+<div id="hdcms">
+    <h1 :class="hd" :id="'houdunwang'">hdphp.com</h1>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            hd: 'red',
+        }
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/js/vuex.js"></script>
+
+</head>
+<body>
+<div id="hdcms">
+    <lists></lists>
+</div>
+<script type="text/x-template" id="Lists">
+    <div>
+        <table border="1" width="90%">
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+                <th>价格</th>
+            </tr>
+            <tr v-for="v in goods">
+                <td v-text="v.id"></td>
+                <td v-text="v.title"></td>
+                <td v-text="v.price"></td>
+            </tr>
+        </table>
+        <h1>总价：<span v-text="totalPrice"></span></h1>
+    </div>
+</script>
+<script>
+    let store = new Vuex.Store({
+        state: {
+            totalPrice: 100,
+            goods: [
+                {id: 1, title: 'iphone7Plus', price: 399},
+                {id: 2, title: 'hdcms系统', price: 1999},
+            ],
+        }
+    });
+    let Lists = {
+        template: '#Lists',
+        computed: {
+            totalPrice(){
+                return this.$store.state.totalPrice;
+            },
+            goods(){
+                return this.$store.state.goods;
+            }
+        },
+    }
+    var app = new Vue({
+        el: '#hdcms',
+        store,
+        components: {Lists,},
+    });
+</script>
+
+</body>
+</html>

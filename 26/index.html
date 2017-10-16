@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <form action="" @submit.prevent="post('HDPHP')">
+        <h1 v-text="times"></h1>
+        <button>提交</button>
+    </form>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            times: new Date(),
+        },
+        methods: {
+            post(num){
+                alert(num);
+            },
+        }
+    });
+
+</script>
+
+</body>
+</html>

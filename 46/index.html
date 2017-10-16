@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="hdcms">
+
+    <div :is="formType"></div>
+    <br>
+    <input type="radio" v-model="formType" value="hdInput"> 文本框
+    <input type="radio" v-model="formType" value="hdTextarea"> 文本域
+
+</div>
+<script>
+    var hdInput = {
+        template: '<div><input type="text"></div>',
+    };
+    var hdTextarea = {
+        template: '<div><textarea name="" id="" cols="30" rows="10"></textarea></div>',
+    };
+    new Vue({
+        el: '#hdcms',
+        components: {hdInput, hdTextarea},
+        data: {
+            formType:'hdTextarea',
+        },
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/js/vue-router.js"></script>
+
+</head>
+<body>
+<div id="hdcms">
+    <router-link to="/content">内容</router-link>
+    <router-link to="/content/99">99</router-link>
+    <router-link to="/content/88">88</router-link>
+    <router-view></router-view>
+</div>
+<script type="text/x-template" id="content">
+    <div>
+        <h1 v-if="!$route.params.id">参数错误!</h1>
+        id:<span v-text="$route.params.id"></span>
+        <br>
+        <button @click="show">检查参数</button>
+    </div>
+</script>
+<script>
+    const content = {
+        template: '#content',
+        data(){
+            return {
+                id: 0,
+            }
+        },
+        mounted(){
+            this.id = this.$route.params.id;
+            if (!this.id) {
+                this.id = 1;
+            }
+        },
+        methods: {
+            show(){
+                console.log(this.$route.params);
+            }
+        }
+    }
+    let routes = [
+        {path: '/content/:id?', component: content},
+    ]
+    //要把主键交给路由器
+    let router = new VueRouter({routes});
+    new Vue({
+        el: '#hdcms',
+        router,
+        data: {},
+    });
+</script>
+
+</body>
+</html>

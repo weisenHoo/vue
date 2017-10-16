@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <a href="http://www.houdunren.com" @click.prevent.stop.once="links">后盾人</a>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {},
+        methods: {
+            links(){
+                alert('http://www.houdunren.com');
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

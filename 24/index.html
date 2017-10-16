@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <ul>
+        <li v-for="(v,k) in comments">
+            <span v-text="v.id"></span> - <span v-text="v.content"></span> -
+            <button v-on:click="remove(k)">删除</button>
+        </li>
+    </ul>
+    <textarea v-model="current_content" cols="30" rows="10"></textarea><br>
+    <button v-on:click="push('end')">发表到后面</button>
+    <button v-on:click="push('pre')">发表到前面</button>
+    <br>
+    <button v-on:click="del('first')">删除第一条评论</button>
+    <button v-on:click="del('last')">删除最后一条评论</button>
+    <br>
+    <button v-on:click="sort()">按编号排序</button>
+    <button v-on:click="reverse()">反转</button>
+    <br>
+    <button v-on:click="del_all()">删除全部</button>
+    <br>
+    <input type="text" v-on:keyup.enter="search" v-model="search_content">
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {
+            //搜索内容
+            search_content: '',
+            //当前用户输入内容
+            current_content: '',
+            comments: [
+                {id: 3, content: 'vue学习',},
+                {id: 4, content: 'vue.7senven.cn',},
+                {id: 1, content: 'edit',},
+                {id: 2, content: 'weisen',},
+            ],
+        },
+        methods: {
+            search(){
+                this.comments = this.comments.filter((item) => {
+                    //console.log(item.id);
+                    //console.log(this.search_content);
+                    var reg = new RegExp(this.search_content, 'i');
+                    return reg.test(item.content);
+                })
+                //console.log(this.search_content);
+            },
+            sort(){
+                this.comments.sort(function (a, b) {
+                    return a.id > b.id;
+                });
+            },
+            reverse(){
+                this.comments.reverse();
+            },
+            remove(k){
+                this.comments.splice(k, 1);
+            },
+            push(type){
+                var content = {id: this.comments.length + 1, content: this.current_content}
+                switch (type) {
+                    case 'end':
+                        this.comments.push(content);
+                        break;
+                    case 'pre':
+                        this.comments.unshift(content);
+                        break;
+                }
+                this.current_content = '';
+            },
+            del(type){
+                switch (type) {
+                    case 'first':
+                        this.comments.shift(content);
+                        break;
+                    case 'last':
+                        this.comments.pop(content);
+                        break;
+                }
+            },
+            del_all(){
+                this.comments = [];
+            },
+        },
+    });
+
+</script>
+
+</body>
+</html>

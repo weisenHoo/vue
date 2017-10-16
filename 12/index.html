@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<style>
+    li{list-style: none;}
+    .success{color: green;}
+    .error{color: red;}
+</style>
+<div id="hdcms">
+    <ul>
+        <li v-for="v in news">
+            <span :class="v.status?'success':'error'" v-text="v.title"></span>
+            <button v-on:click="changeStatus(v, false)" v-if="v.status">删除</button>
+            <button v-on:click="changeStatus(v, true)" v-if="!v.status">恢复</button>
+        </li>
+    </ul>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        methods: {
+            changeStatus: function (item, status) {
+                // alert(status);
+                item.status = status;
+            }
+        },
+        data: {
+            news: [
+                {title: 'vue学习', status: true},
+                {title: 'vue.7senven.cn', status: true},
+            ],
+        }
+    });
+
+</script>
+
+</body>
+</html>

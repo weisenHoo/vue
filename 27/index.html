@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+    <script src="/node_modules/lodash/lodash.js"></script>
+</head>
+<body>
+<div id="hdcms">
+    <!--<div @click.self="box" :style="{border:'2px solid red'}">-->
+    <div @click.capture="box" :style="{border:'2px solid red'}">
+        <a href="http://www.houdunren.com" @click.prevent="links">后盾人</a>
+        <!--<a href="http://www.houdunren.com" @click.stop.prevent="links">后盾人</a>-->
+    </div>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        data: {},
+        methods: {
+            box(){
+                alert('div');
+            },
+            links(){
+                alert('http://www.houdunren.com');
+            }
+        }
+    });
+
+</script>
+
+</body>
+</html>

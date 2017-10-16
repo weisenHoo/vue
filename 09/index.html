@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <script src="/node_modules/axios/dist/axios.js"></script>
+</head>
+<body>
+
+<div id="hdcms">
+    <input type="text" v-model="word">
+    <h1>
+        结果：{{result}}
+    </h1>
+</div>
+<script>
+
+    var app = new Vue({
+        el: '#hdcms',
+        watch: {
+            word: function (newV, oldV) {
+                // console.log(newV + '=>' + oldV);
+                axios.get('index.php?word=' + newV).then(function (response) {
+                    console.log(response);
+                    app.result = response.data;
+                });
+            }
+        },
+        data: {
+            word: '',
+            result: ''
+        }
+    });
+
+</script>
+
+</body>
+</html>

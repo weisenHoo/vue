@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>组件之props数据的多种验证机制实例详解 - vue学习</title>
+
+    <script src="/js/vue-2.4.2.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+<div id="hdcms">
+
+    <hd-news :show-del-button="true"></hd-news>
+
+</div>
+<script type="text/x-template" id="hdNews">
+
+    <ul>
+        <li v-for="v in lists">
+            <span v-text="v.title"></span>
+            <button @click="del(k)" v-if="showDelButton">删除</button>
+        </li>
+    </ul>
+
+</script>
+<script>
+    var hdNews = {
+        template: '#hdNews',
+        props: {
+            showDelButton: {
+                type: [Boolean, Number],
+                required: true,
+//                default: true,
+            },
+//            showDelButton: {
+//                validator(v){
+//                    return v === 1 || v === 0;
+//                },
+//            },
+            lists: {
+                type: Array,
+                default(){
+                    return [{title: '后盾人'}]
+                },
+            },
+        },
+        data() {
+            return {};
+        },
+        methods: {
+            del(k){
+                this.news.splice(k, 1);
+            },
+        },
+    };
+    new Vue({
+        el: '#hdcms',
+        components: {hdNews},
+        data: {
+            news: [
+                {title: 'hdcms'},
+                {title: 'hdphp'},
+                {title: 'houdunren.com'},
+            ]
+        },
+    });
+
+</script>
+
+</body>
+</html>
